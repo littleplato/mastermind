@@ -200,6 +200,10 @@ body {
     background-color: white;
 } */
 
-/* .mastermind-row:nth-child(3) {
+/* .mastermind-row:nth-child(3) .peg3 {
     background-color: black;
+}
+
+.mastermind-row .peg0 {
+    background-color: white;
 } */

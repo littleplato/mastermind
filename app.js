@@ -1,17 +1,17 @@
 // Data Structure
 // 2 columns, 2 rows.
 const mastermind = {
-    codeSet: ["transparent", "transparent", "transparent", "transparent"],
-    tries: 3, //this specifies the number of rows, not necessary actually
+    codeSet: ["", "", "", ""],
+    tries: 8, //this specifies the number of rows, not necessary actually
     pegBoard: [
-        ["transparent", "transparent", "transparent", "transparent"],
-        ["transparent", "transparent", "transparent", "transparent"],
-        ["transparent", "transparent", "transparent", "transparent"]
+        ["", "", "", ""],
+        ["", "", "", ""],
+        ["", "", "", ""]
     ],
     marbleBoard: [
-        ["transparent", "transparent", "transparent", "transparent"],
-        ["transparent", "transparent", "transparent", "transparent"],
-        ["transparent", "transparent", "transparent", "transparent"]
+        ["", "", "", ""],
+        ["", "", "", ""],
+        ["", "", "", ""]
     ],
     selector: ["red", "green", "blue", "yellow", "purple", "white"],
     selectCode: () => {
@@ -21,23 +21,13 @@ const mastermind = {
     }
 }
 
-// gameDecision = []
-
-// create variables = []
-// for(i = 0; i < 3; i++) {
-//     eval('var ' + 'gameDecision' + i + '= ' + '[]' + ';');
-// }
-
 const checkWin = () => {
     // use a method. "element in pegBoard[i] === black", return true. end game. 
     resultsList = []
-    for (let i =0; i <3; i++){
+    for (let i =0; i < mastermind.pegBoard.length; i++){
         resultsList.push(mastermind.pegBoard[i].every((result) => result === "black"))
     }
-    // console.log(resultsList)
-    // console.log(resultsList.some((result) => result === true))
-    return resultsList.some((result) => result === true)
-    
+    return resultsList.some((result) => result === true)   
 }
 
 const checkMatch = (answer, guess, rowNum) => {
@@ -75,38 +65,43 @@ const render = () => {
     // $( "#code-setter" ).hide()
 
     //select 
-    // a good solution is have a selector on the right side. 
     let currentCrater = 0;
     let currentMarbleRow = 0;
     
-    $(".mastermind-row").on("click", (event)=> {
-        currentMarbleRow = $(".mastermind-row").index($(event.currentTarget))
-        // console.log(`You selected marble row nth-child ${currentMarbleRow}`)
-    })
-    ///// basically: top row = nth-child 0, second row = nth-child 1, last row = nth-child 2.
+    // $(".mastermind-row").on("click", (event)=> {
+    //     currentMarbleRow = $(".mastermind-row").index($(event.currentTarget))
+    //     console.log(`You selected .mastermind-row ${currentMarbleRow}`)
+    // })
+    // $(".peg").on("click", (event)=> {
+    //     currentPeg = $(".peg").index($(event.currentTarget))
+    //     console.log(`You selected .peg ${currentPeg}`)
+    // })
 
     $(".marble-crater").on("click", (event)=> {
         currentCrater = $(".marble-crater").index($(event.currentTarget))
-        console.log(`You selected marble crater nth-child ${currentCrater}`)
+        // console.log(`You selected marble crater nth-child ${currentCrater}`)
         $(".selector").show()
     })
     $(".options").on("click", (selector) => {
         $(`.mastermind-row`).find(".marble-crater").eq(currentCrater).css("background-color", `${$(selector.currentTarget).html()}`).text(`${$(selector.currentTarget).html()}`)
         $(".selector").hide()
-            //map answer to array
-        for (let i=0; i < 3; i++ ){
-            for (let j = 0; j < 4; j++) {   
+        // map answer from marble crater to pegBoard array in object
+        for (let i=0; i < mastermind.marbleBoard.length; i++ ){
+            for (let j = 0; j < mastermind.marbleBoard[i].length; j++) {   
                 mastermind.marbleBoard[i].splice(j,1,$(`.row${i} .crater${j}`).text())
                 checkMatch(mastermind.codeSet, mastermind.marbleBoard[i], i)
             }
         }
+        // map pegBoard array to pegs on index.html
+        for (let i = 0; i<mastermind.pegBoard.length; i++) {
+            for(let j=0; j<mastermind.pegBoard[i].length; j ++){
+            gameDecision = mastermind.pegBoard[i]
+            $(`.mastermind-row:nth-child(${mastermind.pegBoard.length-i}) .peg${j}`).css("background-color",`${gameDecision[j]}`)
+            }
+        }
 
-        gameDecision0 = mastermind.pegBoard[0]
-        $(`.mastermind-row`).find(".peg").eq(currentCrater).css("background-color",`${gameDecision0[currentCrater-8]}`)
-        gameDecision1 = mastermind.pegBoard[1]
-        $(`.mastermind-row`).find(".peg").eq(currentCrater).css("background-color",`${gameDecision1[currentCrater-4]}`)
-        gameDecision2 = mastermind.pegBoard[2]
-        $(`.mastermind-row`).find(".peg").eq(currentCrater).css("background-color",`${gameDecision2[currentCrater-0]}`)
+        // gameDecision0 = mastermind.pegBoard[0]
+        // $(`.mastermind-row`).find(".peg").eq(currentCrater).css("background-color",`${gameDecision0[currentCrater-8]}`)
     })
 
     // Evaluate algorithm
@@ -120,7 +115,6 @@ const render = () => {
 
     })
 
-    
 
 }
 
@@ -168,7 +162,7 @@ const main = () => {
         for (let j=0; j < mastermind.pegBoard[0].length; j++){
             //create pegs in pegboard
             const $peg = $("<div>").addClass("peg").addClass("peg"+j)
-            $pegBoard.prepend($peg)
+            $pegBoard.append($peg)
             // create marble craters in marbleboard
             const $marbleCrater = $("<div>").addClass("marble-crater").addClass("crater"+j)
             $marbleBoard.append($marbleCrater)
