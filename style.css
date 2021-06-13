@@ -58,6 +58,18 @@ body {
     border-radius: 5px;
 }
 
+.turn-block {
+    margin: 0;
+    position: absolute; 
+    height: 75px;
+    width: 300px;
+    background-color: white;
+    opacity: 0.1;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    z-index: 1;
+}
+
 .eval {
     margin: 15px 5px 15px 15px;
     font-family: "Source Sans Pro", sans-serif;
@@ -72,6 +84,7 @@ body {
     text-align: center;
     vertical-align: middle;
     line-height: 40px; 
+    /* z-index: 1; */
 }
 
 .eval:hover {
