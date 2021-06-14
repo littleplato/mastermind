@@ -18,7 +18,7 @@ const mastermind = {
         ["", "", "", ""],
         ["", "", "", ""]
     ],
-    selector: ["red", "green", "blue", "yellow", "purple", "white"],
+    selector: ["tomato", "mediumseagreen", "dodgerblue", "gold", "darkviolet", "white"],
     selectCode: () => {
         for (let i = 0; i < mastermind.codeSet.length; i++) {
             mastermind.codeSet.splice(i,1,mastermind.selector[Math.floor(Math.random() * mastermind.selector.length)]);
@@ -91,15 +91,22 @@ const render = () => {
     $(".selector").hide()
     $( "#code-setter" ).hide()
 
+
     //////////////////////////////////////////////////////////
     // Select colour from selector to assign to marble crater
     //////////////////////////////////////////////////////////
 
     let currentCrater = 0;
-
+    let currentRow = 0;
+    // $(".mastermind-row").on("click", (event)=> {
+    //     currentRow = $(".mastermind-row").index($(event.currentTarget))
+    //     console.log(`You selected marble crater nth-child ${currentRow}`)
+    // })
     $(".marble-crater").on("click", (event)=> {
         currentCrater = $(".marble-crater").index($(event.currentTarget))
         // console.log(`You selected marble crater nth-child ${currentCrater}`)
+        
+        // $(`.mastermind-row:nth-child(${1})`).append($(".selector"))
         $(".selector").show()
     })
     $(".options").on("click", (selector) => {
@@ -121,6 +128,8 @@ const render = () => {
             }
         }
     })
+
+
     //////////////////////
     // Evaluate algorithm
     //////////////////////
@@ -212,10 +221,11 @@ const main = () => {
     // Selector
     /////////////
 
-    const $selector = $("<fieldset>").addClass("selector").css("border", "1px solid")
+    const $selector = $("<fieldset>").addClass("selector")
     const $legend = $("<legend>").text("Selector").css("padding", "0.00em 0.5em")
     $selector.append($legend)
-    $(".container").append($selector)
+    $(`.container`).append($selector)
+    
     for (const color of mastermind.selector){
         const $options = $("<div>").addClass("options").attr("id", `option-${color}`).text(color)
         $selector.append($options)
