@@ -75,6 +75,19 @@ const checkMatch = (answer, guess, rowNum) => {
 // 3. RENDERING OF GAME ON BROWSER
 ///////////////////////////////////
 
+/// create selector function
+// const createSelector = () => {
+//     const $selector = $("<fieldset>").addClass("selector")
+//     const $legend = $("<legend>").text("Selector").css("padding", "0.00em 0.5em")
+//     $selector.append($legend)
+//     $(`.container`).append($selector)
+    
+//     for (const color of mastermind.selector){
+//         const $options = $("<div>").addClass("options").attr("id", `option-${color}`).text(color)
+//         $selector.append($options)
+//     }
+// }
+
 const render = () => {
     // clear game decision
     let gameDecision = []
@@ -97,17 +110,15 @@ const render = () => {
     //////////////////////////////////////////////////////////
 
     let currentCrater = 0;
-    let currentRow = 0;
+    // let currentRow = 0;
     // $(".mastermind-row").on("click", (event)=> {
     //     currentRow = $(".mastermind-row").index($(event.currentTarget))
-    //     console.log(`You selected marble crater nth-child ${currentRow}`)
+    //     console.log(`You selected mastermind-row index ${currentRow}`)
     // })
     $(".marble-crater").on("click", (event)=> {
         currentCrater = $(".marble-crater").index($(event.currentTarget))
         // console.log(`You selected marble crater nth-child ${currentCrater}`)
-        
-        // $(`.mastermind-row:nth-child(${1})`).append($(".selector"))
-        $(".selector").show()
+        $(`.select${globalCounter+1}`).show()
     })
     $(".options").on("click", (selector) => {
         $(`.mastermind-row`).find(".marble-crater").eq(currentCrater).css("background-color", `${$(selector.currentTarget).html()}`).text(`${$(selector.currentTarget).html()}`)
@@ -221,15 +232,18 @@ const main = () => {
     // Selector
     /////////////
 
-    const $selector = $("<fieldset>").addClass("selector")
-    const $legend = $("<legend>").text("Selector").css("padding", "0.00em 0.5em")
-    $selector.append($legend)
-    $(`.container`).append($selector)
-    
-    for (const color of mastermind.selector){
-        const $options = $("<div>").addClass("options").attr("id", `option-${color}`).text(color)
-        $selector.append($options)
+    for (let i=0; i <= mastermind.marbleBoard.length; i++) {
+        const $selector = $("<fieldset>").addClass("selector").addClass("select"+i)
+        const $legend = $("<legend>").text("Selector").css("padding", "0.00em 0.5em")
+        $selector.append($legend)
+        $(`.mastermind-row:nth-child(${mastermind.marbleBoard.length+1-i})`).append($selector)
+
+        for (const color of mastermind.selector){
+            const $options = $("<div>").addClass("options").attr("id", `option-${color}`).text(color)
+            $selector.append($options)
+        }
     }
+
 
     render()
     
