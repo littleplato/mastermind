@@ -75,21 +75,15 @@ const checkMatch = (answer, guess, rowNum) => {
 // 3. RENDERING OF GAME ON BROWSER
 ///////////////////////////////////
 
-/// create selector function
-// const createSelector = () => {
-//     const $selector = $("<fieldset>").addClass("selector")
-//     const $legend = $("<legend>").text("Selector").css("padding", "0.00em 0.5em")
-//     $selector.append($legend)
-//     $(`.container`).append($selector)
-    
-//     for (const color of mastermind.selector){
-//         const $options = $("<div>").addClass("options").attr("id", `option-${color}`).text(color)
-//         $selector.append($options)
-//     }
-// }
-
 const render = () => {
     // clear game decision
+
+    $("#start").on("click", (event)=> {
+        $(event.currentTarget).remove()
+        $(".mastermind-board").show()
+        $(".announce").text("Plato has chosen.")
+    })
+
     let gameDecision = []
     $(".block0").remove()
     //start game
@@ -140,7 +134,6 @@ const render = () => {
         }
     })
 
-
     //////////////////////
     // Evaluate algorithm
     //////////////////////
@@ -149,18 +142,30 @@ const render = () => {
     //
     $(".eval").on("click", (event) => {
     if(mastermind.marbleBoard[globalCounter].some((option)=>option === "")){
-        alert("please fill up all options in the row")
+        alert("Please fill all options in the row. \nThere are no empty selections.")
     } else {
         $(event.currentTarget).remove()
         $(".selector").hide()
         // checkWin()
         if (checkWin()) {
             $( "#code-setter" ).show()
-            setTimeout(() => {alert("You win!")}, 100)
-            // alert("You win!")
+            $("#winModal").show()
+            $("button").on("click", () => {
+                location.reload()
+            })
+            $("span").on("click", () => {
+                $(".modal").hide();
+            })
+
         } else if (checkLose()) {
-            alert("Sorry, you lost.")
             $( "#code-setter" ).show()
+            $("#loseModal").show()
+            $("button").on("click", () => {
+                location.reload()
+            })
+            $("span").on("click", () => {
+                $(".modal").hide();
+            })
         } else {
             $(`.mastermind-row:nth-child(${triesLeft}) *`).off("click");
             $(`.mastermind-row:nth-child(${triesLeft}) .marble-crater`).css("cursor", "default");
@@ -244,9 +249,39 @@ const main = () => {
         }
     }
 
+    ///////////////
+    // Exit Modals
+    ///////////////
+    
+    // Win Modal
+    const $winModal = $("<div>").addClass("modal").attr("id","winModal")
+    const $winModalContent = $("<div>").addClass("modal-content")
+    const $crossOut1 = $("<span>").addClass("close").text("x")
+    const $img1 = $("<img>").attr("src","/media/philosophy.svg")
+    const $platoWinMessage = $("<h3>").text(`"Ah damn, you got me!"`)
+    const $winMessage = $("<p>").text("You defeated the greatest philosopher of all time!")
+    const $restartButton1 = $("<button>").addClass("modal-button").text("Restart Game")
+    $winModalContent.append($crossOut1, $img1, $platoWinMessage, $winMessage, $restartButton1)
+    $winModal.append($winModalContent)
+    $("body").append($winModal)
+
+    // Lose Modal
+    const $loseModal = $("<div>").addClass("modal").attr("id","loseModal")
+    const $loseModalContent = $("<div>").addClass("modal-content")
+    const $crossOut2 = $("<span>").addClass("close").text("x")
+    const $img2 = $("<img>").attr("src","/media/philosophy.svg")
+    const $platoLoseMessage = $("<h3>").text(`"Maybe you should go back to the cave..."`)
+    const $loseMessage = $("<p>").text("You lost, but it's okay. It was Plato after all.")
+    const $restartButton2 = $("<button>").addClass("modal-button").text("Try Again")
+    $loseModalContent.append($crossOut2, $img2, $platoLoseMessage, $loseMessage, $restartButton2)
+    $loseModal.append($loseModalContent)
+    $("body").append($loseModal)
+
+    $(".mastermind-board").hide()
 
     render()
-    
+
+
 }
 
 $(main)
