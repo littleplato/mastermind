@@ -42,12 +42,48 @@ const checkWin = () => {
     return resultsList.some((result) => result === true)   
 }
 
+const winScene = () => {
+    $( "#code-setter" ).show()
+    $("#winModal").show()
+    $("button").on("click", () => {
+        location.reload()
+    })
+    $("span").on("click", () => {
+        $(".modal").hide();
+    })
+    $(".finalInstruction").remove()
+    $(".reset-global").show()
+    $(".mastermind-board *").off()
+}
+
 const checkLose = () => {
     resultsList = []
     for (let i =0; i < mastermind.marbleBoard.length; i++) {
         resultsList.push(mastermind.marbleBoard[i].every((result)=> result !== ""))
     }
     return resultsList.every((result) => result === true)
+}
+
+const loseScene = () => {
+    $( "#code-setter" ).show()
+    $("#loseModal").show()
+    $("button").on("click", () => {
+        location.reload()
+    })
+    $("span").on("click", () => {
+        $(".modal").hide();
+    })
+    $(".finalInstruction").remove()
+    $(".reset-global").show()
+    $(".mastermind-board *").off()
+}
+
+const gameContinues = () => {
+    $(`.mastermind-row:nth-child(${triesLeft}) *`).off("click");
+    $(`.mastermind-row:nth-child(${triesLeft}) .marble-crater`).css("cursor", "default");
+    globalCounter += 1;
+    triesLeft -= 1;
+    $(`.block${globalCounter}`).remove()   
 }
 
 const checkMatch = (answer, guess, rowNum) => {
@@ -70,7 +106,6 @@ const checkMatch = (answer, guess, rowNum) => {
   mastermind.pegBoard[rowNum] = answerBoard
 };
 
-
 ///////////////////////////////////
 // 3. RENDERING OF GAME ON BROWSER
 ///////////////////////////////////
@@ -92,14 +127,12 @@ const render = () => {
     mastermind.selectCode()
     //output-> [ 'p', 'r', 'y', 'y' ] to mastermind.codeset
     // assign selected colours the code puzzle 
-
     for (let i = 0; i < mastermind.codeSet.length; i++){
         $(`#code-setter .code-crater:nth-child(${i+1})`).css("background-color", mastermind.codeSet[i])
     }
     console.log(mastermind.codeSet)
     $(".selector").hide()
     $( "#code-setter" ).hide()
-
 
     //////////////////////////////////////////////////////////
     // Select colour from selector to assign to marble crater
@@ -146,35 +179,11 @@ const render = () => {
         $(".selector").hide()
         // checkWin()
         if (checkWin()) {
-            $( "#code-setter" ).show()
-            $("#winModal").show()
-            $("button").on("click", () => {
-                location.reload()
-            })
-            $("span").on("click", () => {
-                $(".modal").hide();
-            })
-            $(".finalInstruction").remove()
-            $(".reset-global").show()
-
+            winScene()
         } else if (checkLose()) {
-            $( "#code-setter" ).show()
-            $("#loseModal").show()
-            $("button").on("click", () => {
-                location.reload()
-            })
-            $("span").on("click", () => {
-                $(".modal").hide();
-            })
-            $(".finalInstruction").remove()
-            $(".reset-global").show()
-
+            loseScene()
         } else {
-            $(`.mastermind-row:nth-child(${triesLeft}) *`).off("click");
-            $(`.mastermind-row:nth-child(${triesLeft}) .marble-crater`).css("cursor", "default");
-            globalCounter += 1;
-            triesLeft -= 1;
-            $(`.block${globalCounter}`).remove()             
+            gameContinues()         
         }
     }
 })
@@ -294,8 +303,6 @@ const main = () => {
     $(".mastermind-board").hide()
 
     render()
-
-
 }
 
 $(main)

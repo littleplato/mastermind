@@ -17,10 +17,18 @@ body {
     font-weight: 700;
     font-family: "Source Sans Pro", sans-serif;
     margin-bottom: 30px;
+
+    /* animation-duration: 1s;
+    animation-name: slidein; */
   }
 
 .description {
     margin: 20px 0 50px 0;
+    /* animation: fadeIn linear 3s;
+    -webkit-animation: fadeIn linear 3s;
+    -moz-animation: fadeIn linear 3s;
+    -o-animation: fadeIn linear 3s;
+    -ms-animation: fadeIn linear 3s; */
 }
 
 p {
@@ -56,7 +64,7 @@ p {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: auto;
     border-radius: 50px;
-    cursor: pointer;
+    cursor: default;
     font-size: 0px;
     filter: drop-shadow(0 0 0.15rem black)
     /* background-color: white; */
@@ -97,7 +105,7 @@ p {
     vertical-align: middle;
     line-height: 40px; 
     color: white;
-    filter: drop-shadow(0 0 0.08rem rgb(57, 56, 56));
+    filter: drop-shadow(0 0 0.3rem rgb(96, 96, 96));
     border-radius: 5px;
     letter-spacing: 1.5px;
     /* z-index: 1; */
@@ -327,3 +335,43 @@ p {
 img {
     height: 100px;
 }
+
+
+/* Testing keyframes CSS animations */
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+
+  @keyframes slidein {
+    from {
+      margin-left: -30%;
+      width: 300%;
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
