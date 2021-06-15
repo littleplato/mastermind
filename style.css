@@ -8,6 +8,7 @@ body {
     /* background-color: whitesmoke; */
     min-height: 500px;
     border-radius: 20px;
+    max-width: 500px;
     /* text-align: left; */
   }
 
@@ -15,8 +16,16 @@ body {
     font-size: 30px;
     font-weight: 700;
     font-family: "Source Sans Pro", sans-serif;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
+
+.description {
+    margin: 20px 0 50px 0;
+}
+
+p {
+    line-height: 1.5em;
+}
 
 .mastermind-board {
     /* height: 00px; */
@@ -25,7 +34,7 @@ body {
     border: 5px solid rgba(0, 0, 0, 0.281);
     border-radius: 20px;
     padding: 20px;
-    
+    margin-top: 10px;
 }
 
 .code-setter-row {

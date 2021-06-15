@@ -79,7 +79,9 @@ const render = () => {
     // clear game decision
 
     $("#start").on("click", (event)=> {
+        $(".finalInstruction").show()
         $(event.currentTarget).remove()
+        $(".description").remove()
         $(".mastermind-board").show()
         $(".announce").text("Plato has chosen.")
     })
@@ -104,12 +106,8 @@ const render = () => {
     //////////////////////////////////////////////////////////
 
     let currentCrater = 0;
-    // let currentRow = 0;
-    // $(".mastermind-row").on("click", (event)=> {
-    //     currentRow = $(".mastermind-row").index($(event.currentTarget))
-    //     console.log(`You selected mastermind-row index ${currentRow}`)
-    // })
     $(".marble-crater").on("click", (event)=> {
+        $(".finalInstruction").text("Match Plato's choice.")
         currentCrater = $(".marble-crater").index($(event.currentTarget))
         // console.log(`You selected marble crater nth-child ${currentCrater}`)
         $(`.select${globalCounter+1}`).show()
@@ -156,6 +154,8 @@ const render = () => {
             $("span").on("click", () => {
                 $(".modal").hide();
             })
+            $(".finalInstruction").remove()
+            $(".reset-global").show()
 
         } else if (checkLose()) {
             $( "#code-setter" ).show()
@@ -166,6 +166,9 @@ const render = () => {
             $("span").on("click", () => {
                 $(".modal").hide();
             })
+            $(".finalInstruction").remove()
+            $(".reset-global").show()
+
         } else {
             $(`.mastermind-row:nth-child(${triesLeft}) *`).off("click");
             $(`.mastermind-row:nth-child(${triesLeft}) .marble-crater`).css("cursor", "default");
@@ -178,6 +181,17 @@ const render = () => {
 }
 
 const main = () => {
+
+    // Final instructions
+    const $finalInstruction = $("<div>").addClass("finalInstruction").text("Start from the bottom.")
+    $(".container").append($finalInstruction, $("<br>"))
+    $finalInstruction.hide()
+
+    //Global reset button
+    const $resetGlobal = $("<button>").addClass("modal-button").addClass("reset-global").text("Restart Game")
+    $(".container").append($resetGlobal)
+    $resetGlobal.hide()
+
     //create main board
     const $mastermindBoard = $("<div>").addClass("mastermind-board")
     $(".container").append($mastermindBoard)
@@ -258,7 +272,7 @@ const main = () => {
     const $winModalContent = $("<div>").addClass("modal-content")
     const $crossOut1 = $("<span>").addClass("close").text("x")
     const $img1 = $("<img>").attr("src","/media/philosophy.svg")
-    const $platoWinMessage = $("<h3>").text(`"Ah damn, you got me!"`)
+    const $platoWinMessage = $("<h3>").text(`"I see you know theory of Forms!"`)
     const $winMessage = $("<p>").text("You defeated the greatest philosopher of all time!")
     const $restartButton1 = $("<button>").addClass("modal-button").text("Restart Game")
     $winModalContent.append($crossOut1, $img1, $platoWinMessage, $winMessage, $restartButton1)
@@ -270,7 +284,7 @@ const main = () => {
     const $loseModalContent = $("<div>").addClass("modal-content")
     const $crossOut2 = $("<span>").addClass("close").text("x")
     const $img2 = $("<img>").attr("src","/media/philosophy.svg")
-    const $platoLoseMessage = $("<h3>").text(`"Maybe you should go back to the cave..."`)
+    const $platoLoseMessage = $("<h3>").text(`"Maybe you should stay in the cave..."`)
     const $loseMessage = $("<p>").text("You lost, but it's okay. It was Plato after all.")
     const $restartButton2 = $("<button>").addClass("modal-button").text("Try Again")
     $loseModalContent.append($crossOut2, $img2, $platoLoseMessage, $loseMessage, $restartButton2)
