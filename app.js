@@ -44,8 +44,7 @@ const mastermind = {
 // 2. LOGIC OF MASTERMIND GAME
 ///////////////////////////////
 
-let triesLeft = mastermind.marbleBoard.length;
-let globalCounter = 0;
+let globalCounter = 0; //this is the turn number
 
 const checkWin = () => {
   // use a method. "element in pegBoard[i] === black", return true. end game.
@@ -100,12 +99,11 @@ const loseScene = () => {
 
 const gameContinues = () => {
   // $(`.mastermind-row:nth-child(${triesLeft}) *`).off("click");
-  $(`.mastermind-row:nth-child(${triesLeft - globalCounter}) *`).off("click");
+  $(`.mastermind-row:nth-child(${mastermind.marbleBoard.length - globalCounter}) *`).off("click");
   $(
-    `.mastermind-row:nth-child(${triesLeft - globalCounter}) .marble-crater`
+    `.mastermind-row:nth-child(${mastermind.marbleBoard.length - globalCounter}) .marble-crater`
   ).css("cursor", "default");
   globalCounter++;
-  // triesLeft -= 1;
   $(`.block${globalCounter}`).remove();
 };
 
@@ -370,7 +368,7 @@ const main = () => {
     `"Maybe you should stay in the cave..."`
   );
   const $loseMessage = $("<p>").text(
-    "You lost, but it's okay. It was Plato after all."
+    "You lost, but it's okay. It is Plato after all."
   );
   const $restartButton2 = $("<button>")
     .addClass("modal-button")
