@@ -1,5 +1,6 @@
 body {
     font-family: "Source Sans Pro", sans-serif;
+    background-color: rgb(248, 248, 250);
 }
 
 .container {
@@ -17,18 +18,10 @@ body {
     font-weight: 700;
     font-family: "Source Sans Pro", sans-serif;
     margin-bottom: 30px;
-
-    /* animation-duration: 1s;
-    animation-name: slidein; */
   }
 
 .description {
     margin: 20px 0 50px 0;
-    /* animation: fadeIn linear 3s;
-    -webkit-animation: fadeIn linear 3s;
-    -moz-animation: fadeIn linear 3s;
-    -o-animation: fadeIn linear 3s;
-    -ms-animation: fadeIn linear 3s; */
 }
 
 p {
@@ -39,6 +32,7 @@ p {
     /* height: 00px; */
     width: 350px;
     background-color: #bdbdbd31;
+    /* background-color: floralwhite; */
     border: 5px solid rgba(0, 0, 0, 0.281);
     border-radius: 20px;
     padding: 20px;
@@ -310,6 +304,10 @@ p {
       box-shadow: 0px 6px 18px -5px rgba(237, 103, 85, 1);
   }
 
+  .reset-global {
+      margin-top: 40px;
+  }
+
 .modal-button:hover {
     background-color: rgb(235, 74, 46);
 }
@@ -326,6 +324,9 @@ p {
     font-size: 16px;
     color: white;
     box-shadow: 0px 6px 18px -5px dodgerblue;
+    animation: bounceIn; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1.5s; /* don't forget to set a duration! */
+    --animate-delay: 2.9s;
 }
 
 #start:hover {
@@ -336,42 +337,24 @@ img {
     height: 100px;
 }
 
+footer {
+    margin: 50px 0 0 60px; 
+    /* animation: fadeInUp; 
+    animation-duration: 1s;  */
+    /* --animate-delay: 10.5s; */
 
-/* Testing keyframes CSS animations */
+}
 
-@keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-moz-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-webkit-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-o-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-ms-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
+h6 {
+    font-size: 12px;
+    font-weight: 700;
 
-  @keyframes slidein {
-    from {
-      margin-left: -30%;
-      width: 300%;
-    }
-  
-    to {
-      margin-left: 0%;
-      width: 100%;
-    }
-  }
+}
+
+a {
+    color: rgba(0, 0, 0, 0.774);
+}
+
+a:hover {
+    color: dodgerblue;
+}

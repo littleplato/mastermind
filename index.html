@@ -4,6 +4,10 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,900,700,600,200" rel="stylesheet">
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,900,700,600,200'>
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css'>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
     <link rel="stylesheet" href="style.css" />
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -11,6 +15,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="app.js"></script>
+    <link rel="icon" type="image/jpg" href="/media/favicon.ico"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,18 +25,18 @@
     <div class="container">
         <div class="announce">Plato is waiting for you.</div>
         <div class="description">
-          <h3>How to play:</h3> 
+          <h3>How to play Mastermind:</h3> 
           <p>
             This is a code-breaking game.<br>
             Match the colours of the code set by Plato (hidden from you) to win. <br>
             No blank options are allowed. <br><br>
             When you're done with your selection, click on the <code>EVAL</code> button.<br>
-            The pegs on the left will indicate your progress. 
+            The pegs on the left indicate the correctness of your choice.
             <ul>
               <li>The pegs go in a <code>Z</code> sequence.</li>
-              <li>Black means both the position and colour of your choice of code are correct.</li>
-              <li>White means only the colour is correct.</li>
-              <li>A blank result means that you've gotten it very wrong.</li>
+              <li>Black means both the position and colour of your choice are correct.</li>
+              <li>Red means the colour, but not the position, is correct.</li>
+              <li>If no pegs are placed, it means you've gotten it very wrong.</li>
             </ul>
             <br>
             You have five tries.<br>
@@ -40,6 +45,12 @@
 
         </p></div>
         <button id="start">Start the Game</button>
+
+
     </div>
+
 </body>
+<footer>
+  <h6>A little jQuery project by Wee Jerrick. See source on <a href="github.com/weejerrick">GitHub</a>.</h6>
+</footer>
 </html>
