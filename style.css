@@ -6,11 +6,9 @@ body {
 .container {
   margin: 30px;
   padding: 30px;
-  /* background-color: whitesmoke; */
   min-height: 500px;
   border-radius: 20px;
   max-width: 500px;
-  /* text-align: left; */
 }
 
 .announce {
@@ -29,10 +27,8 @@ p {
 }
 
 .mastermind-board {
-  /* height: 00px; */
   width: 350px;
   background-color: #bdbdbd31;
-  /* background-color: floralwhite; */
   border: 5px solid rgba(0, 0, 0, 0.281);
   border-radius: 20px;
   padding: 20px;
@@ -61,7 +57,6 @@ p {
   cursor: default;
   font-size: 0px;
   filter: drop-shadow(0 0 0.15rem black);
-  /* background-color: white; */
 }
 
 .mastermind-row {
@@ -79,7 +74,6 @@ p {
   width: 300px;
   background-color: black;
   opacity: 0.1;
-  /* border: 1px solid rgba(245, 245, 245, 0.274); */
   border-radius: 5px;
   z-index: 1;
 }
@@ -102,7 +96,6 @@ p {
   filter: drop-shadow(0 0 0.3rem rgb(96, 96, 96));
   border-radius: 5px;
   letter-spacing: 1.5px;
-  /* z-index: 1; */
 }
 
 .eval:hover {
@@ -113,12 +106,8 @@ p {
 
 .pegs {
   margin: 15px 5px 15px 15px;
-  /* padding: 2px; */
   height: 40px;
   width: 40px;
-  /* border: 1px solid rgba(0, 0, 0, 0.05); */
-  /* display: inline-block; */
-  /* display: flex; */
   display: inline-flex;
   vertical-align: top;
   flex-wrap: wrap;
@@ -129,13 +118,9 @@ p {
   height: 10px;
   width: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  /* background-color: rgba(61, 45, 23, 0.11); */
-  /* /* display: flex; */
   flex: 0 25%;
   margin: 3px;
   border-radius: 100px;
-  /* margin-bottom:1%; */
-  /* filter: drop-shadow(0 0 0.01rem black); */
 }
 
 .marbles {
@@ -157,7 +142,6 @@ p {
   background-color: rgb(228, 226, 226);
   cursor: pointer;
   font-size: 0px;
-  /* background-color: white; */
 }
 
 .filled {
@@ -167,7 +151,6 @@ p {
   margin: auto;
   border-radius: 50px;
   cursor: pointer;
-  /* background-color: white; */
 }
 
 .selector {
@@ -183,8 +166,6 @@ p {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 300;
   position: absolute;
-  /* top: 400px;
-    left: 400px; */
 }
 
 .options {
@@ -227,38 +208,17 @@ p {
   font-size: 0px;
 }
 
-/* .colour-div {
-    height: 25px;
-    width: 25px;
-    border: 1px solid;
-    margin: auto;
-    border-radius: 50px;
-    cursor: pointer;
-} */
-
-/* #code-setter .marble-crater:nth-child(1) {
-    background-color: white;
-} */
-
-/* .mastermind-row:nth-child(5) {
-    background-color: black;
-} */
-/*
-.mastermind-row .peg0 {
-    background-color: white;
-} */
-
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none; 
+  position: fixed; 
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  width: 100%; 
+  height: 100%; 
   overflow: auto;
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); 
+  background-color: rgba(0, 0, 0, 0.4); 
 }
 
 /* Modal Content/Box */
@@ -266,14 +226,13 @@ p {
   text-align: center;
   background-color: #fefefeeb;
   border-radius: 10px;
-  margin: 200px auto; /* 15% from the top and centered */
+  margin: 200px auto; 
   padding: 40px;
   border: 1px solid #888;
-  width: 350px; /* Could be more or less, depending on screen size */
+  width: 350px; 
   filter: drop-shadow(0 0 0.35rem rgb(85, 85, 85));
 }
 
-/* The Close Button */
 .close {
   color: #aaa;
   float: right;
@@ -321,8 +280,8 @@ p {
   font-size: 16px;
   color: white;
   box-shadow: 0px 6px 18px -5px dodgerblue;
-  animation: bounceIn; /* referring directly to the animation's @keyframe declaration */
-  animation-duration: 1.5s; /* don't forget to set a duration! */
+  animation: bounceIn; 
+  animation-duration: 1.5s; 
   --animate-delay: 2.9s;
 }
 
@@ -336,9 +295,6 @@ img {
 
 footer {
   margin: 50px 0 0 60px;
-  /* animation: fadeInUp; 
-    animation-duration: 1s;  */
-  /* --animate-delay: 10.5s; */
 }
 
 h6 {
