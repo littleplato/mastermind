@@ -1,2 +1,3 @@
-# mastermind
-Game to test JS and jQuery
+# Mastermind with Plato
+
+A little jQuery project.
